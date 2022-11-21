@@ -134,6 +134,23 @@ function M.setup()
       cmd = { "MarkdownPreview" },
     }
 
+		use {
+      "nvim-lualine/lualine.nvim",
+      event = "VimEnter",
+      config = function()
+        require("config.lualine").setup()
+      end,
+      requires = { "nvim-web-devicons" },
+    }
+
+		use {
+      "nvim-treesitter/nvim-treesitter",
+      run = ":TSUpdate",
+      config = function()
+        require("config.treesitter").setup()
+      end,
+     }
+
     if packer_bootstrap then
       print "Restart Neovim required after installation!"
       require("packer").sync()
