@@ -1,8 +1,6 @@
 local M = {}
 
 function M.setup()
-  local gps = require "nvim-gps"
-
   require("lualine").setup {
     options = {
       icons_enabled = true,
