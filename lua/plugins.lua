@@ -143,12 +143,18 @@ function M.setup()
       requires = { "nvim-web-devicons" },
     }
 
+		-- Treesitter
 		use {
       "nvim-treesitter/nvim-treesitter",
+			opt = true,
+			event = "BufRead",
       run = ":TSUpdate",
       config = function()
         require("config.treesitter").setup()
       end,
+			requires = {
+				{ "nvim-treesitter/nvim-treesitter-textobjects" },
+		 	},
      }
 
 		 use {
@@ -164,6 +170,28 @@ function M.setup()
 			 cmd = { "NvimTreeToggle", "NvimTreeClose" },
 			 config = function()
 				 require("config.nvimtree").setup()
+			 end,
+		 }
+		 
+		 use {
+			 "stevearc/dressing.nvim",
+			 event = "BufEnter",
+			 config = function()
+				 require("dressing").setup {
+					 select = {
+						 backend = { "telescope", "fzf", "builtin" },
+					 },
+				 }
+			 end,
+		 }
+
+		 -- Bufferline
+		 use {
+			 "akinsho/nvim-bufferline.lua",
+			 event = "BufReadPre",
+			 wants = "nvim-web-devicons",
+			 config = function()
+				 require("config.bufferline").setup()
 			 end,
 		 }
 
