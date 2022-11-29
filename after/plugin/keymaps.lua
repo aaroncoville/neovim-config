@@ -25,6 +25,12 @@ keymap("v", "p", '"_dP', default_opts)
 keymap("n", "<S-h>", ":bprevious<CR>", default_opts)
 keymap("n", "<S-l>", ":bnext<CR>", default_opts)
 
+-- Better window movement
+keymap("n", "<C-h>", "<C-w>h", default_opts)
+keymap("n", "<C-j>", "<C-w>j", default_opts)
+keymap("n", "<C-k>", "<C-w>k", default_opts)
+keymap("n", "<C-l>", "<C-w>l", default_opts)
+
 -- Cancel search highlighting with ESC
 keymap("n", "<ESC>", ":nohlsearch<Bar>:echo<CR>", default_opts)
 
