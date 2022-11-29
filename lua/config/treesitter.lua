@@ -23,6 +23,7 @@ function M.setup()
     },
 
     indent = { enable = true },
+		endwise = { enable = true },
 
     -- vim-matchup
     matchup = {
