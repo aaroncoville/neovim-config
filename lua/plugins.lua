@@ -140,7 +140,7 @@ function M.setup()
       config = function()
         require("config.lualine").setup()
       end,
-      requires = { "nvim-web-devicons" },
+			wants = "nvim-web-devicons",
     }
 
 		-- Treesitter
@@ -159,14 +159,12 @@ function M.setup()
 
 		 use {
        "ibhagwan/fzf-lua",
-       requires = { "kyazdani42/nvim-web-devicons" },
+			 wants = "nvim-web-devicons",
      }
 
 		 use {
 			 "kyazdani42/nvim-tree.lua",
-			 requires = {
-				 "kyazdani42/nvim-web-devicons",
-			 },
+			 wants = "nvim-web-devicons",
 			 cmd = { "NvimTreeToggle", "NvimTreeClose" },
 			 config = function()
 				 require("config.nvimtree").setup()
