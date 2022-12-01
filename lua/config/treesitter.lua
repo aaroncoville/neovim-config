@@ -12,7 +12,8 @@ function M.setup()
       -- `false` will disable the whole extension
       enable = true,
     },
-		incremental_selection = {
+
+    incremental_selection = {
       enable = true,
       keymaps = {
         init_selection = "gnn",
@@ -23,7 +24,6 @@ function M.setup()
     },
 
     indent = { enable = true },
-		endwise = { enable = true },
 
     -- vim-matchup
     matchup = {
@@ -86,6 +86,10 @@ function M.setup()
           ["<leader>dF"] = "@class.outer",
         },
       },
+    },
+    -- endwise
+    endwise = {
+      enable = true,
     },
   }
 end

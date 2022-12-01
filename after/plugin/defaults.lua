@@ -19,13 +19,38 @@ opt.smartcase = true -- Smart case
 opt.updatetime = 250 --Decrease update time
 opt.signcolumn = "yes" -- Always show sign column
 opt.clipboard = "unnamedplus" -- Access system clipboard
-opt.timeoutlen = 300 -- Time in milliseconds to wait for a mapped sequence to complete
 opt.laststatus = 3 -- Global statusline
 opt.cmdheight = 0 -- hide command bar
+opt.timeoutlen = 300 --	Time in milliseconds to wait for a mapped sequence to complete.
+opt.showmode = false -- Do not need to show the mode. We use the statusline instead.
+
 -- Highlight on yank
 vim.cmd [[
   augroup YankHighlight
     autocmd!
     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
   augroup end
+]]
+
+-- Better search
+opt.path:remove "/usr/include"
+opt.path:append "**"
+-- vim.cmd [[set path=.,,,$PWD/**]] -- Set the path directly
+
+opt.wildignorecase = true
+opt.wildignore:append "**/node_modules/*"
+opt.wildignore:append "**/.git/*"
+
+-- Better Netrw, alternatively just use vinegar.vim
+-- g.netrw_banner = 0 -- Hide banner
+-- g.netrw_browse_split = 4 -- Open in previous window
+-- g.netrw_altv = 1 -- Open with right splitting
+-- g.netrw_liststyle = 3 -- Tree-style view
+-- g.netrw_list_hide = (vim.fn["netrw_gitignore#Hide"]()) .. [[,\(^\|\s\s\)\zs\.\S\+]] -- use .gitignore
+
+-- Treesitter based folding
+vim.cmd [[
+  set foldlevel=20
+  set foldmethod=expr
+  set foldexpr=nvim_treesitter#foldexpr()
 ]]
