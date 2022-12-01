@@ -46,6 +46,8 @@ function M.setup()
       "Mofiqul/dracula.nvim",
       config = function()
         vim.cmd "colorscheme dracula"
+      end,
+    }
 
     -- Load only when require
     use { "nvim-lua/plenary.nvim", module = "plenary" }
@@ -153,22 +155,7 @@ function M.setup()
       cmd = { "MarkdownPreview" },
     }
 
-		use {
-      "nvim-lualine/lualine.nvim",
-      event = "VimEnter",
-      config = function()
-        require("config.lualine").setup()
-      end,
-			wants = "nvim-web-devicons",
-    }
-
-		-- Treesitter
-		use {
-      "nvim-treesitter/nvim-treesitter",
-			opt = true,
-			event = "BufRead",
- 
--- Status line
+		-- Status line
     use {
       "nvim-lualine/lualine.nvim",
       after = "nvim-treesitter",
@@ -177,6 +164,7 @@ function M.setup()
       end,
       wants = "nvim-web-devicons",
     }
+
     use {
       "SmiteshP/nvim-gps",
       requires = "nvim-treesitter/nvim-treesitter",
@@ -211,11 +199,9 @@ function M.setup()
 			"RRethy/nvim-treesitter-endwise",
 			wants = "nvim-treesitter",
 			event = "InsertEnter",
-		}
-
       requires = {
         { "nvim-treesitter/nvim-treesitter-textobjects" },
-      },
+      }
     }
 
     if PLUGINS.fzf_lua.enabled then
@@ -372,14 +358,6 @@ function M.setup()
       config = function()
         require("nvim-ts-autotag").setup { enable = true }
       end,
-    }
-
-    -- End wise
-    use {
-      "RRethy/nvim-treesitter-endwise",
-      wants = "nvim-treesitter",
-      event = "InsertEnter",
-      disable = false,
     }
 
     -- LSP
