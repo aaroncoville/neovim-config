@@ -171,6 +171,13 @@ function M.setup()
 			 end,
 		 }
 		 
+		use {
+			"rcarriga/nvim-notify",
+			event = "VimEnter",
+			config = function()
+				vim.notify = require "notify"
+			end,
+		}
 		 use {
 			 "stevearc/dressing.nvim",
 			 event = "BufEnter",
@@ -209,9 +216,7 @@ function M.setup()
 				"ray-x/cmp-treesitter",
 				"hrsh7th/cmp-cmdline",
 				"saadparwaiz1/cmp_luasnip",
-				"hrsh7th/cmp-calc",
-				"f3fora/cmp-spell",
-				"hrsh7th/cmp-emoji",
+				"hrsh7th/cmp-nvim-lsp",
 				{
 					"L3MON4D3/LuaSnip",
 					wants = "friendly-snippets",
@@ -220,7 +225,8 @@ function M.setup()
 					end,
 				},
 				"rafamadriz/friendly-snippets",
-				disable = false,
+	      { "onsails/lspkind-nvim" },
+	      { "tzachar/cmp-tabnine", run = "./install.sh" },
 			},
 		}
 
@@ -249,6 +255,21 @@ function M.setup()
 			"RRethy/nvim-treesitter-endwise",
 			wants = "nvim-treesitter",
 			event = "InsertEnter",
+		}
+
+		-- LSP
+		use {
+			"neovim/nvim-lspconfig",
+			opt = true,
+			event = "BufReadPre",
+			wants = { "nvim-lsp-installer", "lsp_signature.nvim" },
+			config = function()
+				require("config.lsp").setup()
+			end,
+			requires = {
+				"williamboman/nvim-lsp-installer",
+				"ray-x/lsp_signature.nvim",
+			},
 		}
 
     if packer_bootstrap then
