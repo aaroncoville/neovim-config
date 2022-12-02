@@ -44,9 +44,7 @@ local function on_attach(client, bufnr)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-if PLUGINS.nvim_cmp.enabled then
-  capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities) -- for nvim-cmp
-end
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities) -- for nvim-cmp
 
 local opts = {
   on_attach = on_attach,
