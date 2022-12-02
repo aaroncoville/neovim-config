@@ -89,7 +89,7 @@ function M.setup()
         require("config.whichkey").setup()
       end,
     }
-		
+
 		-- IndentLine
     use {
       "lukas-reineke/indent-blankline.nvim",
@@ -144,7 +144,7 @@ function M.setup()
         require("lightspeed").setup {}
       end,
     }
-		
+
     -- Markdown
     use {
       "iamcco/markdown-preview.nvim",
@@ -204,21 +204,6 @@ function M.setup()
       }
     }
 
-    if PLUGINS.fzf_lua.enabled then
-      -- FZF
-      -- use { "junegunn/fzf", run = "./install --all", event = "VimEnter" } -- You don't need to install this if you already have fzf installed
-      -- use { "junegunn/fzf.vim", event = "BufEnter" }
-
-      -- FZF Lua
-      use {
-        "ibhagwan/fzf-lua",
-        event = "BufEnter",
-        wants = "nvim-web-devicons",
-        requires = { "junegunn/fzf", run = "./install --all" },
-      }
-    end
-
-    if PLUGINS.telescope.enabled then
       use {
         "nvim-telescope/telescope.nvim",
         opt = true,
@@ -253,7 +238,6 @@ function M.setup()
           },
         },
       }
-    end
 
     -- nvim-tree
     use {
@@ -292,22 +276,6 @@ function M.setup()
 
     -- Completion
     use {
-      "ms-jpq/coq_nvim",
-      branch = "coq",
-      event = "VimEnter",
-      opt = true,
-      run = ":COQdeps",
-      config = function()
-        require("config.coq").setup()
-      end,
-      requires = {
-        { "ms-jpq/coq.artifacts", branch = "artifacts" },
-        { "ms-jpq/coq.thirdparty", branch = "3p", module = "coq_3p" },
-      },
-      disable = not PLUGINS.coq.enabled,
-    }
-
-    use {
       "hrsh7th/nvim-cmp",
       event = "InsertEnter",
       opt = true,
@@ -337,7 +305,6 @@ function M.setup()
         },
         "rafamadriz/friendly-snippets",
       },
-      disable = not PLUGINS.nvim_cmp.enabled,
     }
 
     -- Auto pairs
@@ -361,42 +328,22 @@ function M.setup()
     }
 
     -- LSP
-    if PLUGINS.nvim_cmp.enabled then
       use {
         "neovim/nvim-lspconfig",
         opt = true,
         event = "BufReadPre",
         -- wants = { "nvim-lsp-installer", "lsp_signature.nvim", "cmp-nvim-lsp" },
-        wants = { "nvim-lsp-installer", "cmp-nvim-lsp", "lua-dev.nvim", "vim-illuminate" },
+        wants = { "nvim-lsp-installer", "cmp-nvim-lsp", "vim-illuminate" },
         config = function()
           require("config.lsp").setup()
         end,
         requires = {
           "williamboman/nvim-lsp-installer",
-          "folke/lua-dev.nvim",
+          "folke/neodev.nvim",
           "RRethy/vim-illuminate",
           -- "ray-x/lsp_signature.nvim",
         },
       }
-    end
-
-    if PLUGINS.coq.enabled then
-      use {
-        "neovim/nvim-lspconfig",
-        opt = true,
-        event = "BufReadPre",
-        wants = { "nvim-lsp-installer", "lsp_signature.nvim", "coq_nvim", "vim-illuminate" }, -- for coq.nvim
-        config = function()
-          require("config.lsp").setup()
-        end,
-        requires = {
-          "williamboman/nvim-lsp-installer",
-          "ray-x/lsp_signature.nvim",
-          "folke/lua-dev.nvim",
-          "RRethy/vim-illuminate",
-        },
-      }
-    end
 
     -- trouble.nvim
     use {
